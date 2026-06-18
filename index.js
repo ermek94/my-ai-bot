@@ -42,5 +42,11 @@ bot.on("message:text", async (ctx) => {
     }
 });
 
+// 🛠️ ХИТРЫЙ ОБХОД ОШИБКИ ПОРТА ДЛЯ БЕСПЛАТНОГО ТАРИФА RENDER
+const http = require("http");
+const server = http.createServer((req, res) => { res.end("Бот работает!"); });
+const port = process.env.PORT || 10000;
+server.listen(port, () => { console.log(`Фальшивый веб-порт запущен на порту ${port}`); });
+
 console.log("Ермек успешно запущен в облаке!");
 bot.start();
